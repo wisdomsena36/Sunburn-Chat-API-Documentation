@@ -58,6 +58,77 @@ curl -X POST https://sunburnchatapi.onrender.com/chat \
 }
 ```
 
+Certainly! Here's a simplified version focusing solely on the API endpoint documentation for sending receipt emails using Flask:
+
+---
+
+## API Endpoint: `/send_receipt`
+
+Sends a receipt email to the specified email address with the total purchase amount.
+
+### Request
+
+- **URL:** `/send_receipt`
+- **Method:** POST
+- **Request Body:**
+  ```json
+  {
+      "email": "user@example.com",
+      "total_amount": 60.00
+  }
+  ```
+  - `email` (str, required): Recipient email address.
+  - `total_amount` (float, required): Total amount of the purchase.
+
+### Response
+
+- **Success Response:**
+  - Status Code: 200 OK
+  - Content:
+    ```json
+    {
+        "message": "Receipt email sent successfully"
+    }
+    ```
+
+- **Error Response:**
+  - Status Code: 500 Internal Server Error
+  - Content:
+    ```json
+    {
+        "error": "Error message"
+    }
+    ```
+
+### Example
+
+#### Example Request
+
+```sh
+curl -X POST http://localhost:5000/send_receipt \
+-H "Content-Type: application/json" \
+-d '{
+    "email": "user@example.com",
+    "total_amount": 60.00
+}'
+```
+
+#### Example Response (Success)
+
+```json
+{
+    "message": "Receipt email sent successfully"
+}
+```
+
+#### Example Response (Error)
+
+```json
+{
+    "error": "Failed to send email: SMTP Authentication Error"
+}
+```
+
 ## Error Handling
 The API returns standard HTTP status codes to indicate the success or failure of an API request. Common status codes include:
 
